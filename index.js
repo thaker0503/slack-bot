@@ -32,7 +32,7 @@ app.event('url_verification', async ({ event, context, client, say }) => {
 expressApp.get('/', (req, res) => {
     (async () => {
         try {
-            await app.start(5001);
+            await app.start();
             console.log(`⚡️ Slack Bolt app is running on port 5001!`);
         } catch (error) {
             console.error('Error starting the bot:', error);
