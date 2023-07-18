@@ -1,6 +1,8 @@
 const { App } = require('@slack/bolt');
 require('dotenv').config();
 
+const expressApp = require('express')();
+
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -27,14 +29,19 @@ app.event('url_verification', async ({ event, context, client, say }) => {
     console.log(event);
 });
 
-(async () => {
-    try {
-        await app.start(5001);
-        console.log(`⚡️ Slack Bolt app is running on port 5001!`);
-    } catch (error) {
-        console.error('Error starting the bot:', error);
-    }
-})();
+expressApp.get('/', (req, res) => {
+    (async () => {
+        try {
+            await app.start(5001);
+            console.log(`⚡️ Slack Bolt app is running on port 5001!`);
+        } catch (error) {
+            console.error('Error starting the bot:', error);
+        }
+    })();
+    res.send('Hello World!')
+})
+
+module.exports = expressApp;
 // module.exports = async () => {
 //     try {
 //         await app.start(5001);
