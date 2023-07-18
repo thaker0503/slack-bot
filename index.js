@@ -27,13 +27,20 @@ app.event('url_verification', async ({ event, context, client, say }) => {
     console.log(event);
 });
 
-(async () => {
+// (async () => {
+//     try {
+//         await app.start(5001);
+//         console.log(`⚡️ Slack Bolt app is running on port 5001!`);
+//     } catch (error) {
+//         console.error('Error starting the bot:', error);
+//     }
+// })();
+module.exports = () => {
     try {
-        await app.start(5001);
+        app.start(5001);
         console.log(`⚡️ Slack Bolt app is running on port 5001!`);
     } catch (error) {
         console.error('Error starting the bot:', error);
     }
-})();
-
-module.exports = app;
+}
+// module.exports = app;
