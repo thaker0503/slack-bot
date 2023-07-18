@@ -35,9 +35,9 @@ app.event('url_verification', async ({ event, context, client, say }) => {
 //         console.error('Error starting the bot:', error);
 //     }
 // })();
-module.exports = () => {
+module.exports = async () => {
     try {
-        app.start(5001);
+        await app.start(5001);
         console.log(`⚡️ Slack Bolt app is running on port 5001!`);
     } catch (error) {
         console.error('Error starting the bot:', error);
